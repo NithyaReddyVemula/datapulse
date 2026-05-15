@@ -1,10 +1,11 @@
 import os
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
-from app.routers import stream, analysis
 
 load_dotenv()
+
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from app.routers import stream, analysis
 
 app = FastAPI(title="DataPulse API", version="1.0.0")
 
@@ -18,6 +19,11 @@ app.add_middleware(
 
 app.include_router(stream.router, tags=["stream"])
 app.include_router(analysis.router, prefix="/api", tags=["analysis"])
+
+
+@app.get("/")
+def root():
+    return {"status": "ok", "service": "datapulse", "version": "1.0.0"}
 
 
 @app.get("/health")

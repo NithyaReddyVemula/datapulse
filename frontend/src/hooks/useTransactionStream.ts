@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import type { Transaction, StreamState } from "../types";
 
-const WS_URL = import.meta.env.VITE_WS_URL || "wss://datapulse-api-a9d9.onrender.com/ws/transactions";
+const WS_URL = import.meta.env.VITE_WS_URL || "wss://datapulse-api.onrender.com/ws/transactions";
 const MAX_FEED_SIZE = 100;
 
 export function useTransactionStream(): StreamState {
